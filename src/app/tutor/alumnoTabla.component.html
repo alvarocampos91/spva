@@ -1,0 +1,121 @@
+<div class="row clearfix" *ngIf="getGrupo() === undefined">
+	cargando...
+</div>
+<ol class="breadcrumb breadcrumb-col-teal" style="margin: -25px 0 10px 0;" *ngIf="getGrupo() !== undefined">
+	<li><a href="#"><i class="material-icons">archive</i> Tutor</a></li>
+	<li class="active"><i class="material-icons">attachment</i> {{getGrupo().nombrePeriodo + ' ' + getGrupo().seccion}}</li>
+</ol>
+<div class="row clearfix" *ngIf="getGrupo() !== undefined">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="header bg-blue-grey">
+				<h2>
+					Grupo <small>{{getGrupo().seccion}}</small>
+				</h2>
+			</div>
+			<div class="body">
+				<ul class="nav nav-tabs tab-nav-right" role="tablist" *ngIf="getGrupos() !== undefined">
+					<li *ngFor="let g of getGrupos()" [ngClass]="{active: g.seccion===getGrupo().seccion}">
+						<a href="#" data-toggle="tab" [routerLink]="['/tutor/grupos/'+g.seccion]">{{g.nombrePeriodo + ' ' + g.seccion}}</a>
+					</li>
+				</ul>
+				<div *ngIf="getAlumnos() === undefined">
+					cargando...
+				</div>
+				<div class="tap-content" *ngIf="getAlumnos() !== undefined">
+					<div role="tabpanel" class="tab-pane fade in active">
+						<div class="row clearfix">
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control" placeholder="Matrícula">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control" placeholder="Nombre">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control" placeholder="Estado">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control" placeholder="Promedio">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control" placeholder="Recursos">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="form-group">
+									<div class="form-line">
+										<input type="text" class="form-control date" placeholder="Porcentaje">
+									</div>
+								</div>
+							</div>
+						</div>
+						<table class="table striped">
+							<thead>
+								<tr>
+									<th>Matr&iacute;cula</th>
+									<th>Nombre</th>
+									<th>Estado</th>
+									<th>Promedio</th>
+									<th>Recursos</th>
+									<th>Porcentaje</th>
+									<th>Faltantes</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th>Matr&iacute;cula</th>
+									<th>Nombre</th>
+									<th>Estado</th>
+									<th>Promedio</th>
+									<th>Recursos</th>
+									<th>Porcentaje</th>
+									<th>Faltantes</th>
+								</tr>
+							</tfoot>
+							<tbody>
+								<tr *ngFor="let almno of getAlumnos().data | slice:(page - 1)*limit:limit*page">
+									<td><a [routerLink]="['/tutor/grupos/' + getGrupo().seccion + '/alumno/'+almno.matricula+'cardex']">{{almno.matricula}}</a></td>
+									<td>{{almno.nombreCompleto}}</td>
+									<td>{{almno.estado}}</td>
+									<td>{{almno.promedio}}</td>
+									<td>{{almno.recursos}}</td>
+									<td>{{almno.porcentaje/100 | percent}}</td>
+									<td>{{almno.faltantes}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<app-pagination
+							(goPage)="goToPage($event)"
+							(goNext)="onNext()"
+							(goPrev)="onPrev()"
+							[pagesToShow]="10"
+							[page]="page"
+							[perPage]="limit"
+							[count]="total"
+							[loading]="loading"
+						></app-pagination>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

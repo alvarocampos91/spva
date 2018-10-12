@@ -1,0 +1,22 @@
+<div class="row clearfix" *ngIf="getGrupo() === undefined">
+	cargando...
+</div>
+<ol class="breadcrumb breadcrumb-col-teal" style="margin: -25px 0 10px 0;">
+	<li><a href="#"><i class="material-icons">archive</i> Tutor</a></li>
+	<li><a href="#"><i class="material-icons">attachment</i> {{ 'Grupo ' + seccion }}</a></li>
+	<li class="active"><i class="material-icons">attachment</i> {{ 'Alumno ' + matricula }}</li>
+</ol>
+<div class="row clearfix">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="header bg-blue-grey">
+				<h2>
+					Alumno <small>{{matricula}}</small>
+				</h2>
+			</div>
+			<div class="body">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</div>
+</div>

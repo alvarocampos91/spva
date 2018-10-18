@@ -14,8 +14,16 @@ const PORT = 8000;
 export class RestDataSource{
 	baseUrl: string;
 	auth_token: string;
+	idUsuario: number;
+	status: number;
+
 	constructor(private http: Http) {
 		this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+		this.status = -1;
+	}
+
+	loginUsuario( user: string, pass: string ) {
+		
 	}
 
 	getGrupos(dni: number): Observable<Grupo[]> {

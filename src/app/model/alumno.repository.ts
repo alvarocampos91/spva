@@ -10,7 +10,7 @@ export class AlumnoRepository {
 	private grupos: Grupo[] = [];
 
 	constructor(private dataSource: RestDataSource) {
-		dataSource.getGrupos(100000001).subscribe(data => {
+		dataSource.getGrupos(100000002).subscribe(data => {
 			this.grupos = data;
 		});
 	}

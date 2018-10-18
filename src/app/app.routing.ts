@@ -16,19 +16,18 @@ const routes: Routes = [
                 component: AlumnoTablaComponent,
                 children: [
                     { 
-                        path: 'alumno/:matricula/',
+                        path: 'alumno/:matricula/:dato',
                         component: TutoradoComponent
-                    }
+                    },
+                    { path: "alumno/:matricula", redirectTo: "alumno/:matricula/cardex", pathMatch: "full" },
+                    { path: "**", redirectTo: "", pathMatch: "full" }
                 ]
             },
-    		{ path: "grupos", component: AlumnoTablaComponent }
+    		{ path: "grupos", component: AlumnoTablaComponent },
+            { path: "**", redirectTo: "grupos", pathMatch: "full" }
     	] 
     },
-    // { path: "form/:mode", component: FormComponent },
-    // { path: "does", redirectTo: "/form/create", pathMatch: "prefix" },
-    // { path: "table", component: TableComponent, children: childRoutes },
-    // { path: "table/:category", component: TableComponent, children: childRoutes },
-    { path: "", redirectTo: "/login", pathMatch: "full" }
+    { path: "**", redirectTo: "login", pathMatch: "full" }
 ]
 
 export const Routing = RouterModule.forRoot(routes);

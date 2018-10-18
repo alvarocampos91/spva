@@ -9,8 +9,7 @@ import { Asignatura } from "../model/asignatura.model";
 
 @Component({
 	moduleId: module.id,
-	templateUrl: 'alumnoTabla.component.html',
-	styleUrls: ['alumnoTabla.component.css']
+	templateUrl: 'alumnoTabla.component.html'
 })
 export class AlumnoTablaComponent {
 	private grupo: Grupo;

@@ -5,7 +5,10 @@ import { RouterModule } from '@angular/router';
 
 import { ModelModule } from '../model/model.module';
 
-import { AlumnoCardexComponent } from './alumnoCardex.component'
+import { AlumnoCardexComponent } from './alumnoCardex.component';
+import { CardexComponent } from './cardex/cardex.component';
+import { MapaComponent } from './mapa/mapa.component';
+import { ProyeccionComponent } from './proyeccion/proyeccion.component'
 
 @NgModule({
 	imports: [
@@ -15,7 +18,10 @@ import { AlumnoCardexComponent } from './alumnoCardex.component'
 		RouterModule
 	],
 	declarations: [
-		AlumnoCardexComponent
+		AlumnoCardexComponent,
+		CardexComponent,
+		MapaComponent,
+		ProyeccionComponent
 	],
 	exports: [
 		AlumnoCardexComponent

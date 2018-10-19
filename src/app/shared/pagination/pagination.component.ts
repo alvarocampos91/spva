@@ -15,6 +15,7 @@ export class PaginationComponent implements OnInit {
 	@Output() goPrev = new EventEmitter<boolean>();
 	@Output() goNext = new EventEmitter<boolean>();
 	@Output() goPage = new EventEmitter<number>();
+	@Output() setLimit = new EventEmitter<number>();
 
 	constructor() { }
 
@@ -31,6 +32,10 @@ export class PaginationComponent implements OnInit {
 			max = this.count;
 		}
 		return max;
+	}
+
+	perPageChange(): void {
+		this.setLimit.emit(this.perPage);
 	}
 
 	onPage(n: number): void {

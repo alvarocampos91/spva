@@ -1,5 +1,21 @@
 <nav>
-	<ul class="pagination pagination-sm" *ngIf="count > 0">
+	<ul class="pagination" *ngIf="count > 0">
+		<li class="pull-left">Página {{page}} de {{totalPages()}}</li>
+		<li class="pull-right">
+			<div class="dataTables_length">
+				<label>
+					<span>Mostar </span>
+					<select name="perPage" class="form-control input-sm" [(ngModel)]="perPage" (ngModelChange)="perPageChange($event)">
+						<option value="5" *ngIf="count > 0">5</option>
+						<option value="10" *ngIf="count > 5">10</option>
+						<option value="20" *ngIf="count > 10">20</option>
+						<option value="30" *ngIf="count > 20">30</option>
+						<option value="40" *ngIf="count > 30">40</option>
+					</select>
+					<span> entradas de <strong>{{count}}</strong></span>
+				</label>
+			</div>
+		</li>
 		<li (click)="onPrev()" [ngClass]="{ 'disabled': page === 1 || loading }">
 			<a>
 				<i class="material-icons">chevron_left</i>

@@ -6,3 +6,16 @@ nav
 {
 	cursor: pointer;
 }
+.dataTables_length, .dataTables_length *
+{
+	display: inline !important;
+}
+.dataTables_length select
+{
+	width: 5em;
+}
+.pagination>li.pull-left
+{
+	padding-top: 9px;
+	margin-right: 1em;
+}

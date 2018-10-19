@@ -61,6 +61,11 @@ export class AlumnoTablaComponent {
 		return grupo.alumnos;
 	}
 
+	setLimit(n: number): void {
+		this.limit = n;
+		console.log(n);
+	}
+
 	goToPage(n: number): void {
 		this.page = n;
 		this.getAlumnos();

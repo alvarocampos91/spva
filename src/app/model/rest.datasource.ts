@@ -6,24 +6,36 @@ import "rxjs/add/operator/map";
 import { Alumno } from "./alumno.model";
 import { Asignatura } from "./asignatura.model";
 import { Grupo } from "./grupo.model";
+import { Sesion } from "./sesion.model";
+import { Usuario } from "./usuario.model"
 
 const PROTOCOL = "http";
 const PORT = 8000;
 
 @Injectable()
 export class RestDataSource{
-	baseUrl: string;
-	auth_token: string;
-	idUsuario: number;
-	status: number;
+	public baseUrl: string;
+	public sesion: Sesion;
 
 	constructor(private http: Http) {
 		this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
-		this.status = -1;
 	}
 
 	loginUsuario( user: string, pass: string ) {
-		
+		this.getLogin(user, pass).subscribe(data =>{
+			this.sesion = data;
+		});
+	}
+
+	getLogin( user: string, pass: string ): Observable<Sesion> {
+		return this.sendRequest(RequestMethod.Get, "validarUsuario?usuario="+user+"&contrasena="+pass);
+	}
+
+	getUsuario(): Observable<Usuario> {
+		if(this.sesion !== undefined ){
+			let id = this.sesion.id;
+			return this.sendRequest(RequestMethod.Get, "usuarios/" + id);
+		}
 	}
 
 	getGrupos(dni: number): Observable<Grupo[]> {
@@ -39,7 +51,7 @@ export class RestDataSource{
 	}
 
 	updateAlumno( alumno: Alumno ): Observable<Alumno> {
-		return this.sendRequest(RequestMethod.Put, "alumnos/${product.matricula}", alumno, true);
+		return this.sendRequest(RequestMethod.Put, "alumnos/${alumno.matricula}", alumno, true);
 	}
 
 	deleteAlumno( matricula: number ): Observable<Alumno> {
@@ -52,14 +64,14 @@ export class RestDataSource{
 
 	private sendRequest(verb: RequestMethod,
 		url: string, body?, auth: boolean = false)
-	: Observable<Object> {
+	: Observable<Object>  {
 		let request = new Request({
 			method: verb,
 			url: this.baseUrl + url,
 			body: body
 		});
-		if (auth && this.auth_token != null) {
-			request.headers.set("Authorization", `Bearer<${this.auth_token}>`);
+		if (auth && this.sesion.token != null) {
+			request.headers.set("Authorization", `Bearer<${this.sesion.token}>`);
 		}
 		return this.http.request(request).map(response => response.json());
 	}

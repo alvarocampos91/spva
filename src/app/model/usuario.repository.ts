@@ -1,8 +1,7 @@
 import { Injectable } from "@angular/core";
 import { RestDataSource } from "./rest.datasource";
 
-import { Usuario } from "./usuario.model"
-import { Sesion } from "./sesion.model"
+import { Usuario } from "./usuario.model";
 
 @Injectable()
 export class UsuarioRepository {

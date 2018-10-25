@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { AlumnoRepository } from "../model/alumno.repository";
+import { TutorRepository } from "../model/tutor.repository";
 import { Router, ActivatedRoute } from "@angular/router";
 import { switchMap } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class AlumnoTablaComponent {
 	public page = 1;
 	public limit = 5;
 
-	constructor(private repository: AlumnoRepository,
+	constructor(private repository: TutorRepository,
 		private router: Router, private route: ActivatedRoute) {}
 
 	getGrupos(): Grupo[]{
@@ -36,7 +36,7 @@ export class AlumnoTablaComponent {
 					const seccion = params["seccion"];
 					this.grupo = this.getGrupos().filter( grupo => grupo.seccion === seccion )[0];
 				}
-				else
+				else if(this.getGrupos()[0] !== undefined)
 				{
 					const seccion = this.getGrupos()[0].seccion;
 					this.router.navigate(['tutor/grupos/'+seccion]);

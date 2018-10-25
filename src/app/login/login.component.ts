@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     {
       this.repository.cargarUsuario();
       if(this.repository.getUsuario() !== undefined) {
-        let tipo: string = this.repository.getUsuario().tipo;
+        let tipo: string = this.repository.getUsuario().tipoUsuario;
         this.router.navigate([tipo]);
       }
     }

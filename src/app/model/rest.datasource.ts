@@ -7,7 +7,8 @@ import { Alumno } from "./alumno.model";
 import { Asignatura } from "./asignatura.model";
 import { Grupo } from "./grupo.model";
 import { Sesion } from "./sesion.model";
-import { Usuario } from "./usuario.model"
+import { Usuario } from "./usuario.model";
+import { Profesor } from "./profesor.model";
 
 const PROTOCOL = "http";
 const PORT = 8000;
@@ -38,8 +39,12 @@ export class RestDataSource{
 		}
 	}
 
-	getGrupos(dni: number): Observable<Grupo[]> {
+	getGrupos(dni: string): Observable<Grupo[]> {
 		return this.sendRequest(RequestMethod.Get, "grupos?dni=" + dni);
+	}
+
+	getProfesor(dni:string): Observable<Profesor> {
+		return this.sendRequest( RequestMethod.Get, "profesores?dni=" + dni );
 	}
 
 	getAlumnos(seccion:string,count?:number): Observable<Alumno[]> {

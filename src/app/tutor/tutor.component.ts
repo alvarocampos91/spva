@@ -1,4 +1,6 @@
 import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef } from "@angular/core";
+import { Router } from "@angular/router";
+import { TutorRepository } from '../model/tutor.repository';
 
 @Component({
 	moduleId: module.id,
@@ -7,6 +9,16 @@ import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef } fro
 export class TutorComponent implements AfterViewInit {
 	@Input() body: any;
 	@ViewChild(TutorComponent, {read: ElementRef}) dynamic: ElementRef;
+
+	constructor( private repository: TutorRepository, private router: Router ) { }
+
+	getTutor() {
+		if(this.repository.getSesion() === undefined ){
+			console.log('login');
+			this.router.navigate(['login']);
+		}
+		return this.repository.getDatosTutor();
+	}
 
 	ngAfterViewInit(): void {
 		const div = document.createElement('div');

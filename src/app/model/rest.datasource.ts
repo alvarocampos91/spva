@@ -14,7 +14,7 @@ const PROTOCOL = "http";
 const PORT = 8000;
 
 @Injectable()
-export class RestDataSource{
+export class RestDataSource {
 	public baseUrl: string;
 	public sesion: Sesion;
 
@@ -44,7 +44,7 @@ export class RestDataSource{
 	}
 
 	getProfesor(dni:string): Observable<Profesor> {
-		return this.sendRequest( RequestMethod.Get, "profesores?dni=" + dni );
+		return this.sendRequest( RequestMethod.Get, "profesores/" + dni );
 	}
 
 	getAlumnos(seccion:string,count?:number): Observable<Alumno[]> {

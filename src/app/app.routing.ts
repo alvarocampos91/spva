@@ -19,8 +19,7 @@ const routes: Routes = [
                         path: 'alumno/:matricula/:dato',
                         component: TutoradoComponent
                     },
-                    { path: "alumno/:matricula", redirectTo: "alumno/:matricula/cardex", pathMatch: "full" },
-                    { path: "**", redirectTo: "", pathMatch: "full" }
+                    { path: "alumno/:matricula", redirectTo: "alumno/:matricula/cardex", pathMatch: "full" }
                 ]
             },
     		{ path: "grupos", component: AlumnoTablaComponent },

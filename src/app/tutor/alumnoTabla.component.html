@@ -14,7 +14,7 @@
 				</h2>
 			</div>
 			<div class="body">
-				<ul class="nav" role="tablist" *ngIf="getGrupos() !== undefined">
+				<ul class="nav nav-tabs" *ngIf="getGrupos() !== undefined">
 					<li *ngFor="let g of getGrupos()" [ngClass]="{active: g.seccion===getGrupo().seccion}">
 						<a href="#" data-toggle="tab" [routerLink]="['/tutor/grupos/'+g.seccion]">{{g.nombrePeriodo + ' ' + g.seccion}}</a>
 					</li>
@@ -23,7 +23,7 @@
 					cargando...
 				</div>
 				<div *ngIf="getAlumnos() !== undefined">
-					<div role="tabpanel" class="tab-pane fade in active">
+					<div class="tab-pane fade in active">
 						<div class="row clearfix">
 							<div class="col-md-2">
 								<div class="form-group">

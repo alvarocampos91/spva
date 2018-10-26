@@ -20,12 +20,16 @@ export class TutorRepository {
 		{
 			dataSource.getUsuario().subscribe( us => {
 				this.usuario = us;
-				dataSource.getProfesor(us.nombreUsuario).subscribe( pr => this.tutor = pr );
-				dataSource.getGrupos(us.nombreUsuario).subscribe(data => {
-					this.grupos = data;
-				});
+				this.cargarTutor(us.nombreUsuario);
 			} );
 		}
+	}
+
+	cargarTutor(dni) {
+		this.dataSource.getProfesor(dni).subscribe( pr => this.tutor = pr );
+		this.dataSource.getGrupos(dni).subscribe(data => {
+			this.grupos = data;
+		});
 	}
 
 	getDatosTutor(): Profesor {
@@ -40,11 +44,16 @@ export class TutorRepository {
 		return this.grupos;
 	}
 
+	getGrupo(seccion: string): Grupo {
+		return this.grupos.filter( grupo => grupo.seccion === seccion )[0];
+	}
+
 	getAlumnos(seccion: string, count: number): Alumno[]{
 		const grupo = this.grupos.filter(grupo => grupo.seccion === seccion)[0];
 		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
 
 		if(grupo && grupo.alumnos === undefined){
+			this.grupos[ind].alumnos = [];
 			this.dataSource.getAlumnos(seccion,count).subscribe(data=>{
 				this.grupos[ind].alumnos = data;
 			});

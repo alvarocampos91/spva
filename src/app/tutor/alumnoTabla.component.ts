@@ -12,14 +12,18 @@ import { Asignatura } from "../model/asignatura.model";
 	templateUrl: 'alumnoTabla.component.html'
 })
 export class AlumnoTablaComponent {
-	private grupo: Grupo;
+	public seccion: string;
 	public loading = false;
 	public total = 0;
 	public page = 1;
 	public limit = 5;
 
 	constructor(private repository: TutorRepository,
-		private router: Router, private route: ActivatedRoute) {}
+		private router: Router, private route: ActivatedRoute) {
+		route.params.subscribe( params => {
+			this.seccion = params['seccion'];
+		});
+	}
 
 	getGrupos(): Grupo[]{
 		return this.repository.getGrupos();
@@ -27,28 +31,26 @@ export class AlumnoTablaComponent {
 
 	getGrupo(): Grupo {
 		// while(this.getGrupos().length == 0);
-		if( this.grupo === undefined )
+		let grupo = this.repository.getGrupo(this.seccion);
+		if( grupo === undefined )
 		{
 			this.loading = true;
-			this.route.params.subscribe( params => {
-				if(params["seccion"] !== undefined)
-				{
-					const seccion = params["seccion"];
-					this.grupo = this.getGrupos().filter( grupo => grupo.seccion === seccion )[0];
-				}
-				else if(this.getGrupos()[0] !== undefined)
-				{
-					const seccion = this.getGrupos()[0].seccion;
-					this.router.navigate(['tutor/grupos/'+seccion]);
-				}
-			} );
+			if(this.seccion !== undefined)
+			{
+				grupo = this.getGrupos().filter( grupo => grupo.seccion === this.seccion )[0];
+			}
+			else if(this.getGrupos()[0] !== undefined)
+			{
+				const seccion = this.getGrupos()[0].seccion;
+				this.router.navigate(['tutor/grupos/'+seccion]);
+			}
 		}
 		else
 		{
 			this.loading = false;
-			this.total = this.grupo.totalAlumnos;
+			this.total = grupo.totalAlumnos;
 		}
-		return this.grupo;
+		return grupo;
 	}
 
 	getAlumnos(): Alumno[]{
@@ -56,28 +58,36 @@ export class AlumnoTablaComponent {
 		if(grupo !== undefined && grupo.alumnos === undefined)
 		{
 			this.repository.getAlumnos(grupo.seccion,grupo.totalAlumnos);
-			this.getGrupo();
 		}
 		return grupo.alumnos;
 	}
 
 	setLimit(n: number): void {
 		this.limit = n;
-		console.log(n);
+		if( n * this.page > this.total ) {
+			this.page = Math.round(this.total/n);
+		}
+		this.getAlumnos();	
 	}
 
 	goToPage(n: number): void {
-		this.page = n;
+		if( (n-1) * this.limit < this.total ){
+			this.page = n;
+		}		
 		this.getAlumnos();
 	}
 
 	onNext(): void {
-		this.page++;
+		if( this.page * this.limit < this.total ){
+			this.page++;
+		}
 		this.getAlumnos();
 	}
 
 	onPrev(): void {
-		this.page--;
+		if( this.page > 1 ) {
+			this.page--;
+		}
 		this.getAlumnos();
 	}
 }

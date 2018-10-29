@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
 
 import { ModelModule } from '../model/model.module';
 
-import { AlumnoCardexComponent } from './alumnoCardex.component';
 import { CardexComponent } from './cardex/cardex.component';
 import { MapaComponent } from './mapa/mapa.component';
-import { ProyeccionComponent } from './proyeccion/proyeccion.component'
+import { ProyeccionComponent } from './proyeccion/proyeccion.component';
 
 @NgModule({
 	imports: [
@@ -18,13 +17,14 @@ import { ProyeccionComponent } from './proyeccion/proyeccion.component'
 		RouterModule
 	],
 	declarations: [
-		AlumnoCardexComponent,
 		CardexComponent,
 		MapaComponent,
 		ProyeccionComponent
 	],
 	exports: [
-		AlumnoCardexComponent
+		CardexComponent,
+		MapaComponent,
+		ProyeccionComponent
 	]
 })
 export class AlumnoModule { }

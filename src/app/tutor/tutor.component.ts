@@ -7,15 +7,28 @@ import { Profesor } from '../model/profesor.model';
 import { TutorRepository } from '../model/tutor.repository';
 import { UsuarioRepository } from '../model/usuario.repository';
 
+import { MenuRoute } from '../model/menu.model';
+
 @Component({
 	moduleId: module.id,
 	templateUrl: "tutor.component.html"
 })
 export class TutorComponent {
+	public routes: MenuRoute[] = [];
+	public nombre: string;
+	public tipo: string;
+	public foto: string;
 
 	constructor( private tutorRepository: TutorRepository, 
 		private usuarioRepository: UsuarioRepository,
-		private router: Router ) { }
+		private router: Router ) { 
+		this.routes.push(new MenuRoute('Grupos','group','grupos',true));
+		this.routes.push(new MenuRoute('Ultimo curso','layers','cursoAnterior',false));
+	}
+
+	goToRoute(r: string) {
+		this.router.navigate(['tutor/'+r]);
+	}
 
 	getTutor(): Profesor {
 		if(this.getUsuario() === undefined) {
@@ -24,6 +37,14 @@ export class TutorComponent {
 		else if(this.tutorRepository.getDatosTutor() === undefined) {
 			this.tutorRepository.cargarTutor(this.getUsuario().nombreUsuario);
 		}
+		else {
+			let usuario: Usuario = this.getUsuario();
+			let tutor: Profesor = this.tutorRepository.getDatosTutor();
+			this.tipo = usuario.tipoUsuario;
+			this.foto = "http://localhost:8000/imgPerfil/" + usuario.idImagenPerfil;
+			this.nombre = tutor.nombre + ' ' + tutor.apellidoPaterno + ' ' + tutor.apellidoMaterno;
+		}
+		
 		return this.tutorRepository.getDatosTutor();
 	}
 

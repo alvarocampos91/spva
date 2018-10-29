@@ -1,0 +1,124 @@
+.materia, 
+.area
+{
+	color: black;
+}
+.row {
+	padding-bottom: 5px;
+}
+
+.col-md-2 {
+	padding: 0 5px;
+}
+
+.col-md-6 {
+	padding: 0 30px;
+}
+
+.materia {
+	border-radius: 5px 5px 0 0;
+	border: 1px solid;
+}
+
+.col-md-4 > div {
+	height: 4em;
+}
+
+.materia > strong {
+	display: block;
+	padding: 5px;
+	border-bottom: 1px solid;
+	height: 4em;
+	overflow: hidden;
+}
+
+.materia.bg-teal,
+.materia.bg-teal > strong {
+	border-color: green;
+}
+
+.bg-red.materia.proyeccion,
+.bg-red.area
+{
+	color: black !important;
+	background: url('http://localhost:8000/img/red-bg.png');            
+}
+
+.bg-blue.materia.proyeccion,
+.bg-blue.area
+{
+	color: black !important;
+	background: url('http://localhost:8000/img/blue-bg.png');            
+}
+
+.bg-teal.materia.proyeccion,
+.bg-teal.area
+{
+	color: black !important;
+	background: url('http://localhost:8000/img/green-bg.png');            
+}
+
+.bg-yellow.materia.proyeccion,
+.bg-yellow.area
+{
+	color: black !important;
+	background: url('http://localhost:8000/img/yellow-bg.png');            
+}
+
+.materia
+{
+	overflow: hidden;
+}
+
+.bg-red,
+.bg-red > strong {
+	border-color: crimson;
+}
+
+.bg-blue,
+.bg-blue > strong {
+	border-color: blue;
+}
+
+.bg-yellow,
+.bg-yellow > strong {
+	border-color: brown;
+}
+
+.materia li {
+	cursor: pointer;
+}
+
+.materia.white-bg {
+	background: white !important;
+	color: cyan !important;
+}
+
+.materia.bg-teal.white-bg {
+	color: green !important;
+}
+
+.materia.bg-red.white-bg {
+	color: crimson !important;
+}
+
+.materia.bg-blue.white-bg {
+	color: blue !important;
+}
+
+.materia.bg-yellow.white-bg {
+	color: brown !important;
+}
+
+.materia.semi-opaco {
+	opacity: .5;
+}
+
+.white-bg.semi-opaco {
+	opacity: 1;
+}
+
+.img-perfil.inicio
+{
+	width: 64px;
+}

@@ -1,3 +1,81 @@
-<p>
-  cardex works!
-</p>
+<div class="row clearfix" *ngIf="estaCargado()">
+	<div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+		<h2>Datos del alumno {{alumno.matricula}}</h2>
+		<div class="ibox-content no-padding border-left-right">
+			<div class="row">
+				<div class="col-md-4"><img alt="image" class="img-responsive" src="http://localhost:8000/imgPerfil/{{alumno.idImagenPerfil}}"></div>
+			</div>			
+		</div>
+		<div class="ibox-content profile-content">
+			<h4><strong>{{alumno.nombre + ' ' + alumno.apellidoPaterno + ' ' + alumno.apellidoMaterno }}</strong></h4>
+			<h2><small class="text-success">{{alumno.matricula}}</small></h2>
+			<p><i class="fa fa-map-marker"></i>{{cardex.carrera.nombre}}</p>
+			<h5>Historia acad&eacute;mica</h5>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<span class="badge badge-primary">{{cardex.aprobadas}}</span>
+						Materias aprobadas
+					</li>
+					<li class="list-group-item">
+						<span class="badge badge-primary">{{cardex.reprobadas}}</span>
+						Materias reprobadas
+					</li>
+					<li class="list-group-item">
+						<span class="badge badge-primary">{{cardex.creditos}}</span>
+						Créditos obtenidos
+					</li>
+				</ul>
+			<div class="row m-t-lg">
+				<div class="col-md-6">
+					<div class="progress" style="height: 5px;">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+						aria-valuemin="0" aria-valuemax="100" [style.width]="(cardex.promedio*10|number:'1.0-0')+'%'"></div>
+					</div>
+					<h5> Promedio                                               
+						<strong> {{cardex.promedio|number:'1.0-2'}}</strong>
+					</h5>
+				</div>
+				<div class="col-md-6">
+					<div class="progress" style="height: 5px;">
+						<div class="progress-bar progress-bar-success" role="progressbar"
+						aria-valuemin="0" aria-valuemax="100" [style.width]="(cardex.porcentaje|number:'1.0-0')+'%'"></div>
+					</div>
+					<h5> Creditos                                               
+						<strong> {{cardex.porcentaje|number:'1.0-2'}} %</strong>
+					</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<a class="btn btn-block btn-lg bg-indigo waves-effect">Mapa de avance</a>
+				</div>
+				<div class="col-md-6">
+					<a class="btn btn-block btn-lg bg-indigo waves-effect">Proyección académica</a>
+				</div>				
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-7 col-md-7 col-sm-6 col-xs-12">
+		<h2>Informaci&oacute;n acad&eacute;mica</h2>
+		<div class="panel-group" id="accordion_periodos" role="tablist" aria-multiselectable="true">
+			<div class="panel panel-col-indigo" *ngFor="let periodo of cardex.periodos; let i = index">
+				<div class="panel-heading" role="tab" id="periodo{{periodo.id}}">
+					<h4 class="panel-title">
+						<a role="button" (click)="onSeleccionar(i)">
+							{{periodo.nombre}}<small><strong>&nbsp;&nbsp;&nbsp;{{periodo.f_inicio}}</strong></small><strong class="pull-right">{{periodo.promedio|number:'1.0-2'}}</strong>
+						</a>
+					</h4>
+				</div>
+				<div id="asignaturas{{periodo.id}}" [ngClass]="{'panel-collapse collapse':i!=seleccionado}">
+					<div class="body">
+						<div class="list-group">
+							<a class="list-group-item" *ngFor="let curso of periodo.materias">
+								{{curso.nombre_corto}} <span class="badge badge-white">{{curso.calificacion}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,6 @@
-import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef } from "@angular/core";
+import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef, EventEmitter, Output } from "@angular/core";
+
+import { MenuRoute } from "../../model/menu.model";
 
 @Component({
   selector: 'app-menu',
@@ -7,7 +9,21 @@ import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef } fro
 })
 export class MenuComponent implements AfterViewInit {
 	@Input() body: any;
+
+	@Input() nombreUsuario: string;
+	@Input() tipoUsuario: string;
+	@Input() imagenUrl: string;
+	@Input() routesMenu: MenuRoute[];
+
+	@Output() goToRoute = new EventEmitter<string>();
+
 	@ViewChild(MenuComponent, {read: ElementRef}) dynamic: ElementRef;
+
+	constructor() {}
+
+	onRoute(r: string){
+		this.goToRoute.emit(r);
+	}
 
 	ngAfterViewInit(): void {
 		const div = document.createElement('div');

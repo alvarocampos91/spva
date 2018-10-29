@@ -11,6 +11,10 @@ import { RouterModule } from "@angular/router";
 import { MenuComponent } from '../shared/menu/menu.component';
 import { PaginationComponent } from '../shared/pagination/pagination.component';
 
+import { CardexComponent } from '../alumno/cardex/cardex.component';
+import { MapaComponent } from '../alumno/mapa/mapa.component';
+import { ProyeccionComponent } from '../alumno/proyeccion/proyeccion.component';
+
 @NgModule({
 	imports: [
 		ModelModule, 
@@ -23,7 +27,10 @@ import { PaginationComponent } from '../shared/pagination/pagination.component';
 		TutorComponent,
 		TutoradoComponent,
 		MenuComponent,
-		PaginationComponent
+		PaginationComponent,
+		CardexComponent,
+		MapaComponent,
+		ProyeccionComponent
 	],
 	exports: [
 		AlumnoTablaComponent,

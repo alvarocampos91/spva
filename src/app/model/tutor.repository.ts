@@ -55,7 +55,9 @@ export class TutorRepository {
 		if(grupo && grupo.alumnos === undefined){
 			this.grupos[ind].alumnos = [];
 			this.dataSource.getAlumnos(seccion,count).subscribe(data=>{
-				this.grupos[ind].alumnos = data;
+				if(this.grupos[ind].alumnos.length == 0){
+					this.grupos[ind].alumnos = data;
+				}
 			});
 		}
 

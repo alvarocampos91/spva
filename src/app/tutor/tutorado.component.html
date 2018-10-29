@@ -1,10 +1,10 @@
-<div class="row clearfix" *ngIf="getGrupo() === undefined">
-	cargando...
-</div>
 <ol class="breadcrumb breadcrumb-col-teal" style="margin: -25px 0 10px 0;">
 	<li><a href="#"><i class="material-icons">archive</i> Tutor</a></li>
 	<li><a href="#"><i class="material-icons">attachment</i> {{ 'Grupo ' + seccion }}</a></li>
-	<li class="active"><i class="material-icons">attachment</i> {{ 'Alumno ' + matricula }}</li>
+	<li><a href="#"><i class="material-icons">attachment</i> {{ 'Alumno ' + matricula }}</a></li>
+	<li class="active" *ngIf="dato == 'cardex'"><i class="material-icons">attachment</i> Cardex</li>
+	<li class="active" *ngIf="dato == 'mapa'"><i class="material-icons">attachment</i> Mapa</li>
+	<li class="active" *ngIf="dato == 'proyeccion'"><i class="material-icons">attachment</i> Proyección</li>
 </ol>
 <div class="row clearfix">
 	<div class="col-md-12">
@@ -15,7 +15,40 @@
 				</h2>
 			</div>
 			<div class="body">
-				<router-outlet></router-outlet>
+				<ul class="nav nav-tabs">
+					<li [ngClass]="{active: dato==='cardex'}">
+						<a data-toggle="tab" (click)="goCardex()" style="cursor: pointer;">Cardex</a>
+					</li>
+					<li [ngClass]="{active: dato==='mapa'}">
+						<a data-toggle="tab" (click)="goMapa()" style="cursor: pointer;">Mapa</a>
+					</li>
+					<li [ngClass]="{active: dato==='proyeccion'}">
+						<a data-toggle="tab" (click)="goProyeccion()" style="cursor: pointer;">Proyeccion</a>
+					</li>
+				</ul>
+				<div *ngIf="dato=='cardex'">
+					<div class="tab-pane fade in active">
+						<app-cardex
+							(goMapa)="goMapa()"
+							(goProyeccion)="goProyeccion()"
+							[matricula]="matricula"
+						></app-cardex>
+					</div>
+				</div>
+				<div class="tab-content" *ngIf="dato=='mapa'" style="overflow: auto;">
+					<div class="tab-pane fade in active">
+						<app-mapa [matricula]="matricula"></app-mapa>
+					</div>
+				</div>
+				<div class="tab-content" *ngIf="dato=='proyeccion'">
+					<div class="tab-pane fade in active">
+						<app-cardex
+							(goMapa)="goMapa()"
+							(goProyeccion)="goProyeccion()"
+							[matricula]="matricula"
+						></app-cardex>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

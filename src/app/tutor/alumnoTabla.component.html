@@ -16,7 +16,7 @@
 			<div class="body">
 				<ul class="nav nav-tabs" *ngIf="getGrupos() !== undefined">
 					<li *ngFor="let g of getGrupos()" [ngClass]="{active: g.seccion===getGrupo().seccion}">
-						<a href="#" data-toggle="tab" [routerLink]="['/tutor/grupos/'+g.seccion]">{{g.nombrePeriodo + ' ' + g.seccion}}</a>
+						<a data-toggle="tab" [routerLink]="['/tutor/grupos/'+g.seccion]">{{g.nombrePeriodo + ' ' + g.seccion}}</a>
 					</li>
 				</ul>
 				<div *ngIf="getAlumnos() === undefined">
@@ -70,7 +70,7 @@
 						</div>
 						<table class="table table-bordered table-hover">
 							<thead>
-								<tr>
+								<tr class="active">
 									<th>Matr&iacute;cula</th>
 									<th>Nombre</th>
 									<th>Estado</th>
@@ -82,7 +82,7 @@
 							</thead>
 							<tbody>
 								<tr *ngFor="let almno of getAlumnos().data | slice:(page - 1)*limit:limit*page">
-									<td><a [routerLink]="['/tutor/grupos/' + getGrupo().seccion + '/alumno/'+almno.matricula+'/cardex']">{{almno.matricula}}</a></td>
+									<td><a [routerLink]="['/tutor/' + getGrupo().seccion + '/alumno/'+almno.matricula+'/cardex']">{{almno.matricula}}</a></td>
 									<td>{{almno.nombreCompleto}}</td>
 									<td>{{almno.estado}}</td>
 									<td>{{almno.promedio}}</td>

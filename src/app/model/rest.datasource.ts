@@ -28,6 +28,18 @@ export class RestDataSource {
 		});
 	}
 
+	getCardex( matricula: string ): Observable<any> {
+		return this.sendRequest(RequestMethod.Get, "kardex?_id="+matricula);
+	}
+
+	getAprobadas( matricula: string ): Observable<any> {
+		return this.sendRequest(RequestMethod.Get, "aprobadas?matricula="+matricula);
+	}
+
+	getCarreraAsig( matricula: string ): Observable<any> {
+		return this.sendRequest(RequestMethod.Get, "asignaturasCarrera?matricula="+matricula);
+	}
+
 	getLogin( user: string, pass: string ): Observable<Sesion> {
 		return this.sendRequest(RequestMethod.Get, "validarUsuario?usuario="+user+"&contrasena="+pass);
 	}
@@ -49,6 +61,10 @@ export class RestDataSource {
 
 	getAlumnos(seccion:string,count?:number): Observable<Alumno[]> {
 		return this.sendRequest(RequestMethod.Get, "alumnos?seccion=" + seccion + "&count="+count);
+	}
+
+	getAlumno( matricula: string ): Observable<Alumno> {
+		return this.sendRequest(RequestMethod.Get, "alumnos/" + matricula );
 	}
 
 	saveAlumno( alumno: Alumno ): Observable<Alumno> {

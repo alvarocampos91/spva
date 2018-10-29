@@ -11,17 +11,9 @@ const routes: Routes = [
     	path: "tutor", 
     	component: TutorComponent, 
     	children: [
-    		{
-                path: "grupos/:seccion",
-                component: AlumnoTablaComponent,
-                children: [
-                    { 
-                        path: 'alumno/:matricula/:dato',
-                        component: TutoradoComponent
-                    },
-                    { path: "alumno/:matricula", redirectTo: "alumno/:matricula/cardex", pathMatch: "full" }
-                ]
-            },
+    		{ path: "grupos/:seccion", component: AlumnoTablaComponent },
+            { path: ':seccion/alumno/:matricula/:dato', component: TutoradoComponent },
+            { path: ":seccion/alumno/:matricula", redirectTo: ":seccion/alumno/:matricula/cardex", pathMatch: "full" },
     		{ path: "grupos", component: AlumnoTablaComponent },
             { path: "**", redirectTo: "grupos", pathMatch: "full" }
     	] 

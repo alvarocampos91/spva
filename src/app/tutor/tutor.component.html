@@ -217,7 +217,13 @@
 	</div>
 </nav>
 <!-- #Top Bar -->
-<app-menu></app-menu>
+<app-menu
+	(goToRoute)="goToRoute($event)"
+	[nombreUsuario]="nombre"
+	[tipoUsuario]="tipo"
+	[imagenUrl]="foto"
+	[routesMenu]="routes"
+></app-menu>
 
 <section class="content">
 	<router-outlet></router-outlet>

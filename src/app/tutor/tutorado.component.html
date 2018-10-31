@@ -1,7 +1,7 @@
 <ol class="breadcrumb breadcrumb-col-teal" style="margin: -25px 0 10px 0;">
-	<li><a href="#"><i class="material-icons">archive</i> Tutor</a></li>
-	<li><a href="#"><i class="material-icons">attachment</i> {{ 'Grupo ' + seccion }}</a></li>
-	<li><a href="#"><i class="material-icons">attachment</i> {{ 'Alumno ' + matricula }}</a></li>
+	<li><a><i class="material-icons">archive</i> Tutor</a></li>
+	<li><a><i class="material-icons">attachment</i> {{ 'Grupo ' + seccion }}</a></li>
+	<li><a><i class="material-icons">attachment</i> {{ 'Alumno ' + matricula }}</a></li>
 	<li class="active" *ngIf="dato == 'cardex'"><i class="material-icons">attachment</i> Cardex</li>
 	<li class="active" *ngIf="dato == 'mapa'"><i class="material-icons">attachment</i> Mapa</li>
 	<li class="active" *ngIf="dato == 'proyeccion'"><i class="material-icons">attachment</i> Proyección</li>
@@ -42,11 +42,7 @@
 				</div>
 				<div class="tab-content" *ngIf="dato=='proyeccion'">
 					<div class="tab-pane fade in active">
-						<app-cardex
-							(goMapa)="goMapa()"
-							(goProyeccion)="goProyeccion()"
-							[matricula]="matricula"
-						></app-cardex>
+						<app-proyeccion	[matricula]="matricula"></app-proyeccion>
 					</div>
 				</div>
 			</div>

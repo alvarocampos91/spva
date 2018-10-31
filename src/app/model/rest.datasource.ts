@@ -40,6 +40,11 @@ export class RestDataSource {
 		return this.sendRequest(RequestMethod.Get, "asignaturasCarrera?matricula="+matricula);
 	}
 
+	getProyecciones( matricula: string ): Observable<any> {
+		return this.sendRequest(RequestMethod.Get, "proyecciones?matricula="+matricula);
+	}
+
+
 	getLogin( user: string, pass: string ): Observable<Sesion> {
 		return this.sendRequest(RequestMethod.Get, "validarUsuario?usuario="+user+"&contrasena="+pass);
 	}

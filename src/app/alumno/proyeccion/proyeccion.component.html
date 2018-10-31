@@ -1,3 +1,15 @@
-<p>
-  proyeccion works!
-</p>
+<div class="row clearfix">
+	<div *ngFor="let pro of getProyecciones(); let i = index">
+		<div class="row clearfix"  *ngIf="i % 3 == 0"></div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+			<div class="list-group">
+				<div class="list-group-item list-group-bg-indigo">
+					<h4 class="list-group-item-heading">{{pro.nombre}}</h4>
+				</div>
+				<a *ngFor="let asignatura of pro.asignaturas" class="list-group-item">
+					<p class="list-group-item-text">{{asignatura.abreviacion}}</p>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

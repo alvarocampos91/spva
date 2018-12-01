@@ -78,9 +78,8 @@ export class MapaComponent implements OnInit {
 	                        this.desits.push(this.asignaturas[key]);
 	                    }
 					}
-					// console.table(this.asignaturas);
-				})
-			})
+				});
+			});
 		}
 		return this.alumno !== undefined && this.asignaturas !== undefined;
 	}

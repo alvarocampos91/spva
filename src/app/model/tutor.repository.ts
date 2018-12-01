@@ -40,17 +40,23 @@ export class TutorRepository {
 		return this.sesion;
 	}
 
+	cerrarSesion() {
+		this.usuario = this.tutor = this.sesion = undefined;
+		this.grupos = [];
+	}
+
 	getGrupos(): Grupo[] {
 		return this.grupos;
 	}
 
 	getGrupo(seccion: string): Grupo {
-		return this.grupos.filter( grupo => grupo.seccion === seccion )[0];
+		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
+		return this.grupos[ind];
 	}
 
-	getAlumnos(seccion: string, count: number): Alumno[]{
-		const grupo = this.grupos.filter(grupo => grupo.seccion === seccion)[0];
+	getAlumnos(seccion: string, count?: number): Alumno[]{
 		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
+		const grupo = this.grupos[ind];
 
 		if(grupo && grupo.alumnos === undefined){
 			this.grupos[ind].alumnos = [];
@@ -61,6 +67,6 @@ export class TutorRepository {
 			});
 		}
 
-		return this.grupos[ind].alumnos || [];
+		return this.grupos[ind].alumnos;
 	}
 }

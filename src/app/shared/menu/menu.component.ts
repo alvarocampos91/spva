@@ -17,6 +17,10 @@ export class MenuComponent implements AfterViewInit {
 
 	@Output() goToRoute = new EventEmitter<string>();
 
+	@Output() goToProfile = new EventEmitter<boolean>();
+	@Output() goToMessages = new EventEmitter<boolean>();
+	@Output() logout = new EventEmitter<boolean>();
+
 	@ViewChild(MenuComponent, {read: ElementRef}) dynamic: ElementRef;
 
 	constructor() {}

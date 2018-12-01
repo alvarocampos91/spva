@@ -54,12 +54,7 @@ export class AlumnoTablaComponent {
 	}
 
 	getAlumnos(): Alumno[]{
-		let grupo = this.getGrupo();
-		if(grupo !== undefined && grupo.alumnos === undefined)
-		{
-			this.repository.getAlumnos(grupo.seccion,grupo.totalAlumnos);
-		}
-		return grupo.alumnos;
+		return this.repository.getAlumnos(this.seccion, this.total);
 	}
 
 	setLimit(n: number): void {

@@ -219,6 +219,9 @@
 <!-- #Top Bar -->
 <app-menu
 	(goToRoute)="goToRoute($event)"
+	(goToProfile)="verPerfil()"
+	(goToMessages)="verMensajes()"
+	(logout)="cerrarSesion()"
 	[nombreUsuario]="nombre"
 	[tipoUsuario]="tipo"
 	[imagenUrl]="foto"

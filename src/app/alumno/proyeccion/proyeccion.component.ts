@@ -18,18 +18,16 @@ export class ProyeccionComponent implements OnInit {
 	ngOnInit() {
 	}
 
-	getProyecciones(){
-		if(this.proyecciones === undefined && !this.cargando)
-		{
+	getProyecciones() {
+		if( this.proyecciones === undefined && !this.cargando ) {
 			this.cargando = true;
 			this.proyecciones = [];
 			this.dataSource.getProyecciones(this.matricula).subscribe( proy => {
-				for( let i = 0; i < proy.length; i++ ){
+				for( let i = 0; i < proy.length; i++ ) {
 					let ind = this.proyecciones.findIndex( periodo => {
 						return periodo.idPeriodo == proy[i].idPeriodo;
 					} );
-					if(ind == -1)
-					{
+					if( ind == -1 ) {
 						ind = this.proyecciones.length;
 						this.proyecciones.push({
 							idPeriodo: proy[i].idPeriodo,

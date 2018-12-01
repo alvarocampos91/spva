@@ -51,4 +51,10 @@ export class TutorComponent {
 	getUsuario(): Usuario {
 		return this.usuarioRepository.getUsuario();
 	}
+
+	cerrarSesion() {
+		this.usuarioRepository.cerrarSesion();
+		this.tutorRepository.cerrarSesion();
+		this.router.navigate(['login']);
+	}
 }

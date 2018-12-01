@@ -16,6 +16,12 @@ export class UsuarioRepository {
 		this.dataSource.loginUsuario(user,pass);
 	}
 
+	cerrarSesion() {
+		this.dataSource.logoutUsuario();
+		this.usuario = undefined;
+		this.esperarUsuario = false;
+	}
+
 	getEstado(): number {
 		if(this.dataSource.sesion !== undefined)
 		{

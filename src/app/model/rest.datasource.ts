@@ -28,6 +28,10 @@ export class RestDataSource {
 		});
 	}
 
+	logoutUsuario() {
+		this.sesion = undefined;
+	}
+
 	getCardex( matricula: string ): Observable<any> {
 		return this.sendRequest(RequestMethod.Get, "kardex?_id="+matricula);
 	}

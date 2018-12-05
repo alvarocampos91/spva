@@ -17,6 +17,8 @@ export class AlumnoTablaComponent {
 	public total = 0;
 	public page = 1;
 	public limit = 5;
+	private almnosCargados = {};
+	private grupoCargado = false;
 
 	constructor(private repository: TutorRepository,
 		private router: Router, private route: ActivatedRoute) {
@@ -30,7 +32,6 @@ export class AlumnoTablaComponent {
 	}
 
 	getGrupo(): Grupo {
-		// while(this.getGrupos().length == 0);
 		let grupo = this.repository.getGrupo(this.seccion);
 		if( grupo === undefined )
 		{
@@ -54,7 +55,17 @@ export class AlumnoTablaComponent {
 	}
 
 	getAlumnos(): Alumno[]{
-		return this.repository.getAlumnos(this.seccion, this.total);
+		let grupo = this.repository.getGrupo(this.seccion);
+		console.log(grupo);
+		let almnos = grupo.alumnos;
+
+		if( almnos === undefined && !this.almnosCargados[this.seccion] ){
+			this.repository.cargarAlumnos(this.seccion);
+			this.almnosCargados[this.seccion] = true;
+			grupo.alumnos = {data:[]};
+		}
+
+		return grupo.alumnos;
 	}
 
 	setLimit(n: number): void {

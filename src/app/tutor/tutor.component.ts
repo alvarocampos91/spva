@@ -18,6 +18,7 @@ export class TutorComponent {
 	public nombre: string;
 	public tipo: string;
 	public foto: string;
+	public tutorCargado = false;
 
 	constructor( private tutorRepository: TutorRepository, 
 		private usuarioRepository: UsuarioRepository,
@@ -35,7 +36,10 @@ export class TutorComponent {
 			this.router.navigate(['login']);
 		}
 		else if(this.tutorRepository.getDatosTutor() === undefined) {
-			this.tutorRepository.cargarTutor(this.getUsuario().nombreUsuario);
+			if(!this.tutorCargado){
+				this.tutorRepository.cargarTutor(this.getUsuario().nombreUsuario);
+				this.tutorCargado = true;
+			}
 		}
 		else {
 			let usuario: Usuario = this.getUsuario();
@@ -56,5 +60,6 @@ export class TutorComponent {
 		this.usuarioRepository.cerrarSesion();
 		this.tutorRepository.cerrarSesion();
 		this.router.navigate(['login']);
+		this.tutorCargado = false;
 	}
 }

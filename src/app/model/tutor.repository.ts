@@ -32,6 +32,16 @@ export class TutorRepository {
 		});
 	}
 
+	cargarAlumnos(seccion:string) {
+		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
+		this.grupos[ind].alumnos = [];
+		let count = this.grupos[ind].totalAlumnos;
+
+		this.dataSource.getAlumnos(seccion,count).subscribe(data=>{
+			this.grupos[ind].alumnos = data;
+		});
+	}
+
 	getDatosTutor(): Profesor {
 		return this.tutor;
 	}
@@ -52,21 +62,5 @@ export class TutorRepository {
 	getGrupo(seccion: string): Grupo {
 		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
 		return this.grupos[ind];
-	}
-
-	getAlumnos(seccion: string, count?: number): Alumno[]{
-		let ind = this.grupos.findIndex(grupo=>grupo.seccion === seccion);
-		const grupo = this.grupos[ind];
-
-		if(grupo && grupo.alumnos === undefined){
-			this.grupos[ind].alumnos = [];
-			this.dataSource.getAlumnos(seccion,count).subscribe(data=>{
-				if(this.grupos[ind].alumnos.length == 0){
-					this.grupos[ind].alumnos = data;
-				}
-			});
-		}
-
-		return this.grupos[ind].alumnos;
 	}
 }

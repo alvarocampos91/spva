@@ -1,0 +1,12 @@
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr class="active">
+			<th *ngFor="let nombre of nombres">{{nombre.titulo}}</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let dato of datos | slice: ( page - 1 ) * perPage: perPage * page" (click)="onSeleccionado(dato[nombres[0]._id])">
+			<td *ngFor="let nombre of nombres">{{dato[nombre.llave]}}</td>
+		</tr>
+	</tbody>
+</table>

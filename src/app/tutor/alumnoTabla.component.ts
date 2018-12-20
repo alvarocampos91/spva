@@ -20,6 +20,16 @@ export class AlumnoTablaComponent {
 	private almnosCargados = {};
 	private grupoCargado = false;
 
+	public nombres = [
+		{titulo:"Matrícula",llave:"matricula",_id:"matricula"},
+		{titulo:"Nombre",llave:"nombreCompleto"},
+		{titulo:"Estado",llave:"estado"},
+		{titulo:"Promedio",llave:"promedio"},
+		{titulo:"Recursos",llave:"recursos"},
+		{titulo:"Porcentaje",llave:"porcentaje"},
+		{titulo:"Faltantes",llave:"faltantes"}
+	];
+
 	constructor(private repository: TutorRepository,
 		private router: Router, private route: ActivatedRoute) {
 		route.params.subscribe( params => {
@@ -56,7 +66,6 @@ export class AlumnoTablaComponent {
 
 	getAlumnos(): Alumno[]{
 		let grupo = this.repository.getGrupo(this.seccion);
-		console.log(grupo);
 		let almnos = grupo.alumnos;
 
 		if( almnos === undefined && !this.almnosCargados[this.seccion] ){
@@ -95,5 +104,9 @@ export class AlumnoTablaComponent {
 			this.page--;
 		}
 		this.getAlumnos();
+	}
+
+	onSeleccionarAlmno(matricula){
+		this.router.navigate(['tutor/'+this.seccion+'/alumno/'+matricula+'/cardex']);
 	}
 }

@@ -68,30 +68,15 @@
 								</div>
 							</div>
 						</div>
-						<table class="table table-bordered table-hover">
-							<thead>
-								<tr class="active">
-									<th>Matr&iacute;cula</th>
-									<th>Nombre</th>
-									<th>Estado</th>
-									<th>Promedio</th>
-									<th>Recursos</th>
-									<th>Porcentaje</th>
-									<th>Faltantes</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr *ngFor="let almno of getAlumnos().data | slice:(page - 1)*limit:limit*page">
-									<td><a [routerLink]="['/tutor/' + getGrupo().seccion + '/alumno/'+almno.matricula+'/cardex']">{{almno.matricula}}</a></td>
-									<td>{{almno.nombreCompleto}}</td>
-									<td>{{almno.estado}}</td>
-									<td>{{almno.promedio}}</td>
-									<td>{{almno.recursos}}</td>
-									<td>{{almno.porcentaje/100 | percent}}</td>
-									<td>{{almno.faltantes}}</td>
-								</tr>
-							</tbody>
-						</table>
+						<app-tabla
+							(seleccionado)="onSeleccionarAlmno($event)"
+							[nombres]="nombres"
+							[datos]="getAlumnos().data"
+							[page]="page"
+							[perPage]="limit"
+							[count]="total"
+							[loading]="loading"
+						></app-tabla>
 						<app-pagination
 							(goPage)="goToPage($event)"
 							(goNext)="onNext()"

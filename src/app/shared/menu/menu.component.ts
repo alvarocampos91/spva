@@ -1,5 +1,4 @@
 import { Component, Input, AfterViewInit, ViewChild, Directive, ElementRef, EventEmitter, Output } from "@angular/core";
-
 import { MenuRoute } from "../../model/menu.model";
 
 @Component({

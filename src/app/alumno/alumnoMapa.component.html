@@ -1,0 +1,18 @@
+<ol class="breadcrumb breadcrumb-col-teal" style="margin: -25px 0 10px 0;">
+	<li><a><i class="material-icons">archive</i> Alumno</a></li>
+	<li class="active"><i class="material-icons">attachment</i> Mapa</li>
+</ol>
+<div class="row clearfix">
+	<div class="col-md-12">
+		<div class="card">
+			<div class="header bg-blue-grey">
+				<h2>
+					<strong>{{getAlumno().nombre}}</strong> <small>{{getAlumno().matricula}}</small>
+				</h2>
+			</div>
+			<div class="body">
+				<app-mapa [matricula]="matricula"></app-mapa>
+			</div>
+		</div>
+	</div>
+</div>

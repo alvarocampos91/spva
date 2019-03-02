@@ -5,6 +5,13 @@ import { TutorComponent } from './tutor/tutor.component';
 import { AlumnoTablaComponent } from './tutor/alumnoTabla.component';
 import { TutoradoComponent } from './tutor/tutorado.component';
 
+import { AlumnoComponent } from './alumno/alumno.component';
+import { AlumnoCardexComponent } from './alumno/alumnoCardex.component';
+import { AlumnoMapaComponent } from './alumno/alumnoMapa.component';
+import { AlumnoProyeccionComponent } from './alumno/alumnoProyeccion.component';
+
+ 
+
 const routes: Routes = [
     { path: "login", component: LoginComponent },
     {
@@ -18,7 +25,16 @@ const routes: Routes = [
             { path: "**", redirectTo: "grupos", pathMatch: "full" }
     	] 
     },
+    {
+        path: "alumno",
+        component: AlumnoComponent,
+        children: [
+            { path: "cardex", component: AlumnoCardexComponent },
+            { path: "mapa", component: AlumnoMapaComponent },
+            { path: "proyeccion", component: AlumnoProyeccionComponent },
+            { path: "**", redirectTo: "cardex", pathMatch: "full" }
+        ]
+    },
     { path: "**", redirectTo: "login", pathMatch: "full" }
 ]
-
 export const Routing = RouterModule.forRoot(routes);

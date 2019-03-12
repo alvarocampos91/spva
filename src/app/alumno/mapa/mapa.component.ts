@@ -51,7 +51,7 @@ export class MapaComponent implements OnInit {
 
 			return 'white-bg';
 		}
-		return '';
+		return 'check';
 	}
 
 	datosCargados(): boolean {

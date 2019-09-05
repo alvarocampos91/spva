@@ -4,10 +4,14 @@
 		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 			<div class="list-group">
 				<div class="list-group-item list-group-bg-indigo">
-					<h4 class="list-group-item-heading">{{pro.nombre}}</h4>
+					<strong class="list-group-item-heading">{{pro.nombre}}</strong>	
+					<input style="width: 4em;" class="pull-right" type="number" name="" *ngIf="i != 0">
+					<span class="pull-right" *ngIf="i == 0">Carga actual</span>
 				</div>
 				<a *ngFor="let asignatura of pro.asignaturas" class="list-group-item">
-					<p class="list-group-item-text">{{asignatura.abreviacion}}</p>
+					<i class="material-icons pull-left" *ngIf="i != 0">chevron_left</i>
+					<span class="list-group-item-text">{{asignatura.abreviacion}}</span> 
+					<i class="material-icons pull-right" *ngIf="i != 0">chevron_right</i>
 				</a>
 			</div>
 		</div>

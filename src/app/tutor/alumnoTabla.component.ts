@@ -17,8 +17,10 @@ export class AlumnoTablaComponent {
 	public total = 0;
 	public page = 1;
 	public limit = 5;
+	public estados = ['excelente','completo','regular','retraso','crítico','baja'];
 	private almnosCargados = {};
 	private grupoCargado = false;
+	public estado = '0';
 
 	public nombres = [
 		{titulo:"Matrícula",llave:"matricula",_id:"matricula"},
@@ -74,7 +76,9 @@ export class AlumnoTablaComponent {
 			grupo.alumnos = {data:[]};
 		}
 
-		return grupo.alumnos;
+		let data = this.estado == '0'? grupo.alumnos.data: grupo.alumnos.data.filter(alumno=>alumno.estado == this.estado);
+		this.total = data.length;
+		return data;
 	}
 
 	setLimit(n: number): void {

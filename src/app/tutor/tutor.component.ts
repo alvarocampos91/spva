@@ -23,8 +23,8 @@ export class TutorComponent {
 	constructor( private tutorRepository: TutorRepository, 
 		private usuarioRepository: UsuarioRepository,
 		private router: Router ) { 
-		this.routes.push(new MenuRoute('Grupos','group','grupos',true));
-		this.routes.push(new MenuRoute('Ultimo curso','layers','cursoAnterior',false));
+		this.routes.push(new MenuRoute('Grupos','group','grupos'));
+		this.routes.push(new MenuRoute('Ultimo curso','layers','cursoAnterior'));
 	}
 
 	goToRoute(r: string) {

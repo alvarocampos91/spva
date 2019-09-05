@@ -23,9 +23,9 @@ export class AlumnoComponent {
 	constructor( private alumnoRepository: AlumnoRepository, 
 		private usuarioRepository: UsuarioRepository,
 		private router: Router ) { 
-		this.routes.push(new MenuRoute('Cardex','assignment','cardex',true));
-		this.routes.push(new MenuRoute('Mapa','polymer','mapa',false));
-		this.routes.push(new MenuRoute('Proyección','line_weight','proyeccion',false));
+		this.routes.push(new MenuRoute('Cardex','assignment','cardex','/alumno/cardex',true));
+		this.routes.push(new MenuRoute('Mapa','polymer','mapa','/alumno/mapa',false));
+		this.routes.push(new MenuRoute('Proyección','line_weight','/alumno/proyeccion','proyeccion',false));
 	}
 
 	goToRoute(r: string) {

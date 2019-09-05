@@ -25,7 +25,7 @@
 	<div class="menu">
 		<ul class="list">
 			<li class="header">MEN&Uacute; PRINCIPAL</li>
-			<li *ngFor="let route of routesMenu;" [ngClass]="{'active':route.active}">
+			<li *ngFor="let route of routesMenu;" routerLink="{{route.link}}" routerLinkActive="active">
 				<a (click)="onRoute(route.route)" style="cursor: pointer;">
 					<i class="material-icons">{{route.iconName}}</i>
 					<span>{{route.name}}</span>

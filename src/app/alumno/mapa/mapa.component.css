@@ -37,28 +37,28 @@
 	border-color: green;
 }
 
-.bg-red.materia.proyeccion,
+.bg-red.materia,
 .bg-red.area
 {
 	color: black !important;
 	background: url('http://localhost:8000/img/red-bg.png');            
 }
 
-.bg-blue.materia.proyeccion,
+.bg-blue.materia,
 .bg-blue.area
 {
 	color: black !important;
 	background: url('http://localhost:8000/img/blue-bg.png');            
 }
 
-.bg-teal.materia.proyeccion,
+.bg-teal.materia,
 .bg-teal.area
 {
 	color: black !important;
 	background: url('http://localhost:8000/img/green-bg.png');            
 }
 
-.bg-yellow.materia.proyeccion,
+.bg-yellow.materia,
 .bg-yellow.area
 {
 	color: black !important;
